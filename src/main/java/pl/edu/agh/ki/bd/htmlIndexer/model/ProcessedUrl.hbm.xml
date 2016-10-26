@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping package="pl.edu.agh.ki.bd.htmlIndexer.model">
+ 
+    <class name="ProcessedUrl">
+        <id name="id">
+        		<column name="url_id" />
+                <generator class="native"/>
+        </id>
+        <property name="url" type="text"/>
+        <property name="date" type="java.util.Date" />
+        
+        <set name="sentences" cascade="all">
+        	<key column="PROCESSED_URL_ID"/> 	
+        	<one-to-many class="pl.edu.agh.ki.bd.htmlIndexer.model.Sentence" />
+        </set>
+                
+    </class>
+ 
+</hibernate-mapping>
+
+
+
