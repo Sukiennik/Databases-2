@@ -6,15 +6,18 @@
 <hibernate-mapping package="pl.edu.agh.ki.bd.htmlIndexer.model">
  
     <class name="Sentence">
-        <id name="id">
-                <column name="SENTENCE_ID"/>
-                <generator class="native" />            
-        </id>
-       <!--  <many-to-one name="processedurl" class="pl.edu.agh.ki.bd.htmlIndexer.model.ProcessedUrl"/>     -->    
-
-        <property name="content" type="text"/>
-        <!--  property name="url" type="text" -->
-                
+       <id name="id">
+            <column name="SENTENCE_ID"/>
+            <generator class="native" />            
+       </id>
+       <set name="words" table="SentencesWords" cascade="all">
+       		<key column="SENTENCE_ID"/>
+       		<many-to-many column="WORD_ID" unique="true" class="pl.edu.agh.ki.bd.htmlIndexer.model.Word" />   
+       </set>
+       
+       <many-to-one name="processedurl" class="pl.edu.agh.ki.bd.htmlIndexer.model.ProcessedUrl">
+       		<column name="PROCESSED_URL_ID"/> 
+       </many-to-one>                     
     </class>
  
 </hibernate-mapping>

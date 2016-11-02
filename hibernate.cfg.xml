@@ -20,6 +20,7 @@
 		<property name="hibernate.hbm2ddl.auto">create</property>
 		
 		<!-- Mappings -->
+		<mapping resource="pl/edu/agh/ki/bd/htmlIndexer/model/Word.hbm.xml" />
 		<mapping resource="pl/edu/agh/ki/bd/htmlIndexer/model/Sentence.hbm.xml" />
 		<mapping resource="pl/edu/agh/ki/bd/htmlIndexer/model/ProcessedUrl.hbm.xml" />
 		

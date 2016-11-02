@@ -1,57 +1,46 @@
 package pl.edu.agh.ki.bd.htmlIndexer.model;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-public class ProcessedUrl {
+public class Word {
 
 	private long id;
-	private String url;
-	private Date date;
+	private String content;
 	private Set<Sentence> sentences=new HashSet<Sentence>();
 	
-	public ProcessedUrl() {
+	public Word(){};
+	
+	public Word(String content) {
+		setContent(content);
 	}
 	
-	public ProcessedUrl(String url, Date date) {
-		this.setUrl(url);
-		this.setDate(date);
-	}
-	public ProcessedUrl(String url, Date date, Set<Sentence> sentences) {
-		this.setUrl(url);
-		this.setDate(date);
-		this.setSentences(sentences);
+	public Word(String content, Set<Sentence> sentences) {
+		setContent(content);
+		setSentences(sentences);
 	}
 	
 	public void addSentence(Sentence sentence) {
 		this.sentences.add(sentence);
 	}
-
+	
 	public long getId() {
-		return id;
+		return this.id;
 	}
+	
 	public void setId(long id) {
 		this.id = id;
 	}
 	
-	public String getUrl() {
-		return url;
+	public String getContent() {
+		return this.content;
 	}
 	
-	public void setUrl(String url) {
-		this.url = url;
-	}
-	
-	public Date getDate() {
-		return date;
-	}
-	
-	public void setDate(Date date) {
-		this.date = date;
+	public void setContent(String content) {
+		this.content = content;
 	}
 	
 	public Set<Sentence> getSentences() {
@@ -65,18 +54,18 @@ public class ProcessedUrl {
 	@Override
 	public boolean equals(Object obj) {
 		if(this == obj) return true;
-		if(!(obj instanceof ProcessedUrl)) return false;
+		if(!(obj instanceof Word)) return false;
 		
-		ProcessedUrl that = (ProcessedUrl) obj;
+		Word that = (Word) obj;
 		EqualsBuilder eb = new EqualsBuilder();
-		eb.append(this.getUrl(), that.getUrl());
+		eb.append(this.content, that.content);
 		return eb.isEquals();
 	}
 	
 	@Override
 	public int hashCode() {
     	HashCodeBuilder hcb = new HashCodeBuilder();
-	    hcb.append(url);
+	    hcb.append(this.content);
 	    return hcb.toHashCode();
 	    }	
 	

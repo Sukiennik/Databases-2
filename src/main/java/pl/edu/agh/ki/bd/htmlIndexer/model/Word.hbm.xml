@@ -5,17 +5,16 @@
  
 <hibernate-mapping package="pl.edu.agh.ki.bd.htmlIndexer.model">
  
-    <class name="ProcessedUrl">
+    <class name="Word">
         <id name="id">
-        		<column name="url_id" />
+        		<column name="word_id" />
                 <generator class="native"/>
         </id>
-        <property name="url" type="text"/>
-        <property name="date" type="java.util.Date" />
-        
-        <set name="sentences" cascade="all" >
-        	<key column="PROCESSED_URL_ID" /> 	
-        	<one-to-many class="pl.edu.agh.ki.bd.htmlIndexer.model.Sentence" />
+        <property name="content" type="text"/>
+      
+        <set name="sentences" table="SentencesWords" inverse="true">
+        	<key column="WORD_ID" /> 	
+        	<many-to-many column="SENTENCE_ID" class="pl.edu.agh.ki.bd.htmlIndexer.model.Sentence" />
         </set>
                 
     </class>
